@@ -1,11 +1,9 @@
 package controllers
 
-import akka.util.LineNumbers.Result
 import org.scalatestplus.play.{OneAppPerSuite, PlaySpec}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
-import scala.concurrent.Future
 
 /**
   * Created by helen on 19/10/16.
