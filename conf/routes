@@ -14,7 +14,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /home                       controllers.BreakfastAppController.home
 
-GET     /landing                    controllers.HomePageController.landing()
+GET     /land                       controllers.HomeController.land()
 
 GET     /menuPage                   controllers.MenuController.showMenu
 POST    /menuPage                   controllers.MenuController.createMenu
