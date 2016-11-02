@@ -10,14 +10,12 @@ import play.api.test.Helpers._
   */
 class HomeControllerSpec extends PlaySpec with OneAppPerSuite  {
 
-  //Replace HomePageController with stuff here
-
   object FakeMorningGreeter extends TimeGreetingService {
-    def greeting = "Morning"
+    def greeting = "Morning, want to order lunch?"
   }
 
   object FakeAfternoonGreeter extends TimeGreetingService {
-    def greeting = "Afternoon"
+    def greeting = "Afternoon, want to order lunch?"
   }
 
   object TestHomeControllerTest extends HomeController
@@ -25,7 +23,7 @@ class HomeControllerSpec extends PlaySpec with OneAppPerSuite  {
 
   "The Home page controller" should {
     "say morning" when {
-      val result = controller.land(FakeMorningGreeter.greeting).apply(FakeRequest(GET, "/land"))
+      val result = controller.landing(FakeMorningGreeter.greeting)(FakeRequest(GET, "foo"))
       status(result) mustBe OK
 
       contentAsString(result) must include ("lunch?")
@@ -33,7 +31,7 @@ class HomeControllerSpec extends PlaySpec with OneAppPerSuite  {
     }
 
     "say afternoon" when {
-      val result = controller.land(FakeAfternoonGreeter.greeting)(FakeRequest(GET, "/land"))
+      val result = controller.landing(FakeAfternoonGreeter.greeting)(FakeRequest(GET, "foo"))
       status(result) mustBe OK
 
       contentAsString(result) must include ("lunch?")
@@ -41,15 +39,21 @@ class HomeControllerSpec extends PlaySpec with OneAppPerSuite  {
     }
 
     "have some content" when {
-      val result = controller.land()(FakeRequest(GET, "/land"))
+      val result = controller.landing(FakeMorningGreeter.greeting)(FakeRequest(GET, "foo"))
       status(result) mustBe OK
       contentAsString(result) must include ("Morning, want to order lunch?")
     }
 
     "Say hello" when {
       "I go to the landing page" in {
-        val result = route(app, FakeRequest(GET, "/land"))
-        result.map(contentAsString(_)).get must include ("want to order lunch?")
+        val result = controller.landing("Hello")(FakeRequest(GET, "foo"))
+        contentAsString(result) must include ("Hello")
+      }
+    }
+
+    "not return a 404" when {
+      "I go to the route landing" in {
+        route(app, FakeRequest(GET, "/landing")).map(status(_)) must not be Some(NOT_FOUND)
       }
     }
   }

@@ -32,7 +32,7 @@ class HomeController @Inject() extends Controller {
 
   val fakeGreeter = FakeMorningGreeter
 
-  def land(message: String = "Morning") = Action {
+  def landing(message: String = "Morning") = Action {
     Ok(views.html.landing(message))
   }
 
