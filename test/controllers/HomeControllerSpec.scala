@@ -18,27 +18,35 @@ class HomeControllerSpec extends PlaySpec with OneAppPerSuite  {
     def greeting = "Afternoon, want to order lunch?"
   }
 
-  object TestHomeControllerTest extends HomeController
-  val controller = TestHomeControllerTest
+  //HomeController is no longer a class so you can just assign it here rather than creating an object
+  val controller = HomeController
 
   "The Home page controller" should {
-    "say morning" when {
-      val result = controller.landing(FakeMorningGreeter.greeting)(FakeRequest(GET, "foo"))
+    "say morning" in {
+      val morningController = new HomePageController {
+        val greeter = FakeMorningGreeter
+      }
+
+      val result = morningController.landing(FakeMorningGreeter.greeting)(FakeRequest(GET, "foo"))
       status(result) mustBe OK
 
       contentAsString(result) must include ("lunch?")
       contentAsString(result) must include ("Morning")
     }
 
-    "say afternoon" when {
-      val result = controller.landing(FakeAfternoonGreeter.greeting)(FakeRequest(GET, "foo"))
+    "say afternoon" in {
+      val afternoonController = new HomePageController {
+        val greeter = FakeAfternoonGreeter
+      }
+
+      val result = afternoonController.landing(FakeAfternoonGreeter.greeting)(FakeRequest(GET, "foo"))
       status(result) mustBe OK
 
       contentAsString(result) must include ("lunch?")
       contentAsString(result) must include ("Afternoon")
     }
 
-    "have some content" when {
+    "have some content" in {
       val result = controller.landing(FakeMorningGreeter.greeting)(FakeRequest(GET, "foo"))
       status(result) mustBe OK
       contentAsString(result) must include ("Morning, want to order lunch?")

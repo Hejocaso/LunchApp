@@ -1,7 +1,5 @@
 package controllers
 
-import javax.inject._
-
 import org.joda.time.DateTime
 import play.api.mvc._
 
@@ -25,15 +23,20 @@ object FakeMorningGreeter extends TimeGreetingService {
   def greeting = "Morning, want to order lunch?"
 }
 
-@Singleton
-class HomeController @Inject() extends Controller {
-
-  //val greeter = RealTimeGreeterService
-
-  val fakeGreeter = FakeMorningGreeter
+trait HomeController extends Controller {
+  def greeter: TimeGreetingService
 
   def landing(message: String = "Morning") = Action {
     Ok(views.html.landing(message))
   }
-
 }
+
+object HomeController extends HomeController {
+
+  val greeter = RealTimeGreeterService
+
+  //Notice it was def in the trait but now greeter is a val
+
+  //val fakeGreeter = FakeMorningGreeter
+}
+
