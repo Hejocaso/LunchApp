@@ -1,3 +1,10 @@
+LunchApp to practice Play with Scala
+
+To run: type "activator run" in terminal
+Go to: localhost://9000 to view the page
+
++++++++++++++++++++++++++++++++++++++++++++Below stuff comes with Play+++++++++++++++++++++++++++++++++++++++++++
+
 This is your new Play application
 =================================
 
