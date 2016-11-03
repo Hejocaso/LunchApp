@@ -1,0 +1,63 @@
+@(form: Form[MenuData])(implicit messages: Messages)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lunch Club</title>
+</head>
+<body>
+<h1 style="text-decoration: underline;">Menu for today</h1>
+@helper.form(action = routes.Application.createMenu) {
+    @helper.inputText(form("item"))
+    @helper.inputText.(form("price"))
+    <button type="submit">Submit</button>
+}
+<!--Menu Item: <input type="text" id="@{form(menuItem).id}" name="@form{(menuItem).label}" value="@form{(menuItem)}" placeholder="Item name">-->
+<h2>Menu</h2>
+<table>
+    <tr>
+        <th>Menu</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        @for(m <- menu) {
+        <td>@menu.item</td>
+        <td>@menu.price</td>
+        }
+    </tr>
+</table>
+</body>
+</html>
+
+
+
+
+
+
+<!--
+@(menu: Seq[MenuData], form: Form[MenuData])(implicit messages: play.api.i18n.Messages)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lunch Club</title>
+</head>
+<body>
+<h1 style="text-decoration: underline;">Menu for today</h1>
+@helper.form(routes.Application.createMenu) {
+    @helper.inputText(form("item"))
+    @helper.inputText.(form("price"))
+    <button type="submit">Submit</button>
+}
+<!--Menu Item: <input type="text" id="@{form(menuItem).id}" name="@form{(menuItem).label}" value="@form{(menuItem)}" placeholder="Item name">
+<h2>Menu</h2>
+<table>
+    <tr>Menu
+        <td>Item 1</td>
+    </tr>
+</table>
+</body>
+</html>
+-->

@@ -12,4 +12,11 @@ GET     /message                    controllers.AsyncController.message
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-#GET     /home                       controllers.BreakfastAppController.???
+
+# The class below uses a singleton class - so a controller that's not an object
+GET     /home                       @controllers.BreakfastAppController.home
+
+GET     /landing                    controllers.HomeController.landing
+
+GET     /menuPage                   controllers.MenuController.showMenu
+POST    /menuPage                   controllers.MenuController.createMenu
