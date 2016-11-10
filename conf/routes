@@ -18,7 +18,4 @@ GET     /home                       @controllers.BreakfastAppController.home
 
 GET     /landing                    controllers.HomeController.landing
 
-GET     /menuPage                   controllers.MenuController.showMenu
-POST    /menuPage                   controllers.MenuController.createMenu
-
 GET     /sandwich                   controllers.SandwichController.getSandwiches
