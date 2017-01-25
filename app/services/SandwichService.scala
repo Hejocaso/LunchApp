@@ -4,10 +4,10 @@ import models.Sandwich
 
 
 trait SandwichService {
-  def getSandwiches(): List[Sandwich]
+  def allSandwiches(): List[Sandwich]
 }
 object SandwichService extends SandwichService {
-  override def getSandwiches(): List[Sandwich] = {
+  override def allSandwiches(): List[Sandwich] = {
     List()
   }
 }

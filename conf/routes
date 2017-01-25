@@ -18,5 +18,6 @@ GET     /home                       @controllers.NotBreakfastAppController.home(
 
 GET     /landing                    controllers.HomeController.landing()
 
-#GET     /sandwiches                 @controllers.SandwichController.getSandwiches
+#Calls an object so doesn't use '@'
+GET     /sandwiches                 controllers.SandwichesController.sandwiches()
 #POST    /sandwiches                 @controllers.SandwichController.getSandwiches
