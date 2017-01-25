@@ -10,7 +10,11 @@ import play.api.test.Helpers._
   */
 class HomePageControllerSpec extends PlaySpec with OneAppPerSuite {
 
-  object TestHomeControllerTest extends HomeController
+  //TODO: Need to define TimeGreetingService
+
+  object TestHomeControllerTest extends HomeController {
+    override def greeter = ???
+  }
   val controller = TestHomeControllerTest
 
   "HomeController" should {

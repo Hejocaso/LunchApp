@@ -32,8 +32,8 @@ class HomePageController @Inject() extends Controller {
 
   val fakeGreeter = FakeMorningGreeter
 
-  def landing(message: String = "Morning") = Action {
-    Ok(views.html.landing(message))
+  def index(message: String = "Morning") = Action {
+    Ok(views.html.index("Hello World!"))
   }
 
 }

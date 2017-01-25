@@ -3,19 +3,20 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /                           @controllers.HomePageController.index()
 # An example controller showing how to use dependency injection
-GET     /count                      controllers.CountController.count
+GET     /count                      @controllers.CountController.count
 # An example controller showing how to write asynchronous code
-GET     /message                    controllers.AsyncController.message
+GET     /message                    @controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 
 # The class below uses a singleton class - so a controller that's not an object
-GET     /home                       @controllers.BreakfastAppController.home
+GET     /home                       @controllers.NotBreakfastAppController.home()
 
-GET     /landing                    controllers.HomeController.landing
+GET     /landing                    controllers.HomeController.landing()
 
-GET     /sandwich                   controllers.SandwichController.getSandwiches
+#GET     /sandwiches                 @controllers.SandwichController.getSandwiches
+#POST    /sandwiches                 @controllers.SandwichController.getSandwiches

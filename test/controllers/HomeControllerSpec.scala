@@ -18,12 +18,12 @@ class HomeControllerSpec extends PlaySpec with OneAppPerSuite  {
     def greeting = "Afternoon, want to order lunch?"
   }
 
-  //HomeController is no longer a class so you can just assign it here rather than creating an object
+  //HomeController is no longer a class (it has a companion object which extends a trait) so you can just assign it here rather than creating an object
   val controller = HomeController
 
   "The Home page controller" should {
     "say morning" in {
-      val morningController = new HomePageController {
+      val morningController = new HomeController {
         val greeter = FakeMorningGreeter
       }
 
@@ -35,7 +35,7 @@ class HomeControllerSpec extends PlaySpec with OneAppPerSuite  {
     }
 
     "say afternoon" in {
-      val afternoonController = new HomePageController {
+      val afternoonController = new HomeController {
         val greeter = FakeAfternoonGreeter
       }
 
