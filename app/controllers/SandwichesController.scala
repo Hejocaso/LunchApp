@@ -11,10 +11,6 @@ trait SandwichesController extends Controller {
 object SandwichesController extends Controller {
   val sandwichService: SandwichService = SandwichService
 
-//  def sandwiches() = Action {
-//    Ok("foo")
-//  }
-
   def sandwiches() = Action {
     Ok(views.html.sandwiches())
   }

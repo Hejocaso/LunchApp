@@ -9,7 +9,7 @@ import services.SandwichService
 class SandwichControllerSpec extends PlaySpec with OneAppPerSuite {
 
   class NoSandwichSandwichService extends SandwichService {
-    override def getSandwiches(): List[Sandwich] = ???
+    override def allSandwiches(): List[Sandwich] = ???
   }
 
   "Exist as a route" when {
@@ -26,13 +26,19 @@ class SandwichControllerSpec extends PlaySpec with OneAppPerSuite {
     }
 
     "Display a welcome message when there are no sandwiches" in {
-      val noSandwichService = NoSandwichService
+      val noSandwichService = new NoSandwichSandwichService
       val controller = SandwichesController
-      val result = controller.sandwiches()(FakeRequest(GET, "foo"))
+      val result = controller.sandwiches()(FakeRequest(GET, "/sandwiches"))
       status(result) mustBe OK
       contentAsString(result) must include ("Want to order lunch?")
       contentAsString(result) must include ("Sorry, we're sold out")
     }
+
+    /*
+    * TODO: Need to add an if-else block inside the sandwiches() method in the SandwichesController to check for
+    * the quantity returned by the SandwichService. If it's empty then display the no sandwiches message
+    **/
+
 
 
     //    "find the page" in {

@@ -7,7 +7,7 @@ class SandwichServiceSpec extends PlaySpec with OneAppPerSuite{
   "SandwichService" should {
     "return a list of sandwiches" in {
       val sandwichService = SandwichService
-      val result = sandwichService.getSandwiches()
+      val result = sandwichService.allSandwiches()
       result must be(List())
     }
   }
